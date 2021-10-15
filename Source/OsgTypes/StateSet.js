@@ -1,6 +1,9 @@
-ObjectClass = require("./Object");
-RenderingHint = require("../Enum/StateSet_RenderingHint");
-RenderBinMode = require("../Enum/StateSet_RenderBinMode");
+// ObjectClass = require("./Object");
+// RenderingHint = require("../Enum/StateSet_RenderingHint");
+// RenderBinMode = require("../Enum/StateSet_RenderBinMode");
+const ObjectClass = require("./Object");
+const RenderingHint = require("../Enum/StateSet_RenderingHint");
+const RenderBinMode = require("../Enum/StateSet_RenderBinMode");
 
 class StateSet extends ObjectClass{
 

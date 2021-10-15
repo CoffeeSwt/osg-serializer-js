@@ -1,4 +1,5 @@
-ObjectClass = require("./Object");
+// ObjectClass = require("./Object");
+const ObjectClass = require("./Object");
 
 class UserDataContainer extends ObjectClass{
     constructor(){

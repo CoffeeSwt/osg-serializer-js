@@ -1,7 +1,11 @@
-StreamOperator = require('./StreamOperator');
-Log = require('../Common/Log');
+// StreamOperator = require('./StreamOperator');
+// Log = require('../Common/Log');
+const StreamOperator = require('./StreamOperator');
+const Log = require('../Common/Log');
 
-class BinaryStreamOperator extends StreamOperator{
+const buffer = require('buffer')
+
+class BinaryStreamOperator extends StreamOperator {
     constructor(buffer, initPosition) {
         super("BinaryStreamOperator");
 
@@ -58,8 +62,8 @@ class BinaryStreamOperator extends StreamOperator{
 
     readBool() {
         let ch = this.readChar().charCodeAt(0);
-        if(ch > 1)
-            Log.warn("found boolean who is not 0 or 1 - "+ch+". may indicate failure in reading binary")
+        if (ch > 1)
+            Log.warn("found boolean who is not 0 or 1 - " + ch + ". may indicate failure in reading binary")
         return (ch !== 0)
     }
 
@@ -122,9 +126,15 @@ class BinaryStreamOperator extends StreamOperator{
         objectGLEnum.value = this.readUInt();
     }
 
-    readBuffer(size){
-        let subBuffer = new Buffer(size);
-        this._buffer.copy(subBuffer,0,this._position,this._position+size);
+    readBuffer(size) {
+        let subBuffer;// = new Buffer(size);
+        if (typeof Buffer != 'undefined') {
+            subBuffer = Buffer.alloc ? Buffer.alloc(size) : new Buffer(size);
+        } else {
+            subBuffer = buffer.Buffer.alloc(size);
+        }
+
+        this._buffer.copy(subBuffer, 0, this._position, this._position + size);
         this._position += size;
         return subBuffer;
     }

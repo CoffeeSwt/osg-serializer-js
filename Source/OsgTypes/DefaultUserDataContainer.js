@@ -1,4 +1,5 @@
-UserDataContainer = require("./UserDataContainer");
+// UserDataContainer = require("./UserDataContainer");
+const UserDataContainer = require("./UserDataContainer");
 
 class DefaultUserDataContainer extends UserDataContainer{
     constructor(){

@@ -1,9 +1,12 @@
 {
-  "name": "osg-serializer-js",
+  "name": "osg-serializer-browser",
   "version": "0.0.1",
   "description": "Module for reading and writing OpenSceneGraph 3D models. file type supported: .osgb .osgt",
   "main": "Source/index.js",
+  "module": "SourceESM/index.js",
   "scripts": {
+    "start": "mesh3d start -p=1234",
+    "build": "mesh3d build -i='Source/index.js' -o='dist/osg.js' -e=false -s=osg",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -13,11 +16,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/eran-pinhas/osg-serializer-js.git"
+    "url": "https://github.com/MikesWei/osg-serializer-js.git"
   },
-  "author": "Eran Pinhas",
+  "author": "Eran Pinhas,MikesWei",
   "license": "ISC",
   "dependencies": {
-    "bluebird": "^3.5.1"
+    "bluebird": "^3.5.1",
+    "buffer": "^6.0.3"
   }
 }

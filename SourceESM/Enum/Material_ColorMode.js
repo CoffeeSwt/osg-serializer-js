@@ -1,0 +1,8 @@
+export default {
+    AMBIENT: 4608,
+    DIFFUSE: 4609,
+    SPECULAR: 4610,
+    EMISSION: 5632,
+    AMBIENT_AND_DIFFUSE: 5634,
+    OFF: 5634 + 1
+};

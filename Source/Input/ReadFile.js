@@ -1,9 +1,10 @@
-const fs = require('fs');
+// const fs = require('fs');
 const InputStream = require('./InputStream');
 const DataTypes = require('../Common/DataTypes');
 const BinaryStreamOperator = require('./BinaryStreamOperator');
 const AsciiStreamOperator = require('./AsciiStreamOperator');
 const Log = require('../Common/Log');
+const bufferLib = require('buffer')
 
 let PROPERTY = new DataTypes.ObjectProperty();
 
@@ -23,7 +24,11 @@ const WriteType = {
  * @param {buffer} buffer
  * @return {object} the serialized node
  */
-function readBuffer(buffer,path) {
+function readBuffer(buffer, path) {
+
+    if (buffer instanceof ArrayBuffer) {
+        buffer = (typeof Buffer !== 'undefined' ? Buffer : bufferLib.Buffer).from(buffer)
+    }
 
     const low = buffer.readUInt32LE(0);
     const high = buffer.readUInt32LE(4);
@@ -70,7 +75,7 @@ function readBuffer(buffer,path) {
     }
     reader.version = openscenegraph_soversion;
 
-    let inputStream = new InputStream(path,reader);
+    let inputStream = new InputStream(path, reader);
     let startTime = new Date().getTime();
     let obj = inputStream.readObject();
     Log("timeElapsed:", new Date().getTime() - startTime);
@@ -84,21 +89,22 @@ function readBuffer(buffer,path) {
  * @param {function} cb callback function
  */
 function readFile(path, cb) {
-    if(!cb){
+    const fs = require('fs');
+    if (!cb) {
         throw "Call back required";
     }
     fs.readFile(path, function (err, data) {
         if (err) cb(err);
         let node;
-        try{
-            node = readBuffer(data,path);
-        } catch (e){
+        try {
+            node = readBuffer(data, path);
+        } catch (e) {
             return cb(e);
         }
-        if(!node){
+        if (!node) {
             return cb("Failed to convert file")
         }
-        cb(null,node)
+        cb(null, node)
     })
 }
 

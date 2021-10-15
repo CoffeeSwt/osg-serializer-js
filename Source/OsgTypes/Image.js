@@ -1,9 +1,9 @@
-const Promise = require('bluebird')
+// const Promise = require('bluebird')
 const BufferData = require('./BufferData');
-const fs = require('fs');
+// const fs = require('fs');
 const Log = require('../Common/Log');
 
-let ReadFile = Promise.promisify(fs.readFile);
+// let ReadFile = Promise.promisify(fs.readFile);
 
 class Image extends BufferData {
     constructor() {
@@ -53,6 +53,11 @@ class Image extends BufferData {
             Log.fatal("No File name found for image")
             return Promise.reject("No File name found for image");
         }
+
+        //
+        const Promise = require('bluebird')
+        const fs = require('fs');
+        let ReadFile = Promise.promisify(fs.readFile);
 
         this.imagePromise = ReadFile(this.imagePath).then(data => {
             this.Data = data;

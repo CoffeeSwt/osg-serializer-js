@@ -1,5 +1,5 @@
-ObjectClass = require("./Object");
-
+// ObjectClass = require("./Object");
+const ObjectClass = require("./Object");
 class Node extends ObjectClass{
     constructor(){
         super();

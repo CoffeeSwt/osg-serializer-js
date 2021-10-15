@@ -2,7 +2,8 @@ const Log = require('../Common/Log');
 const BaseSerializer = require('./BaseSerializer');
 
 function reverseMap(map) {
-    ret = {};
+    // ret = {};
+    var ret = {};
     Object.keys(map).forEach(key => {
         let val = map[key];
         if (ret[val])

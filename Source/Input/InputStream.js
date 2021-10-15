@@ -7,7 +7,7 @@ const {ObjectProperty} = require('../Common/DataTypes');
 const Log = require('../Common/Log');
 const Base64Encoder = require('../Common/Base64Encoder');
 
-const path = require('path');
+// const path = require('path');
 
 const IMAGE_INLINE_DATA = 0;
 const IMAGE_INLINE_FILE = 1;
@@ -445,6 +445,7 @@ class InputStream {
         // let loadedFromCache = false; // not implemented
 
         if ( readFromExternal && name !== ""){
+            const path = require('path');
             image = new Image();
             image.imagePath = path.join(path.dirname(this.filePath),name);
         }
